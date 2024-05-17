@@ -18,7 +18,7 @@ void ofApp::setup()
 
     posX = 500;
     posY = 350;
-    scale = 1;
+    scale = 0.1;
 
     height = ofGetHeight();
 
@@ -50,22 +50,30 @@ void ofApp::draw()
             snowY[i] = 0;
     }
 
-    // 羽と尾の描画
-    ofSetColor(28, 28, 32);
-    ofDrawTriangle(posX - scale * 155, posY + scale * 10, posX - scale * 125, posY - scale * 10, posX - scale * 150, posY + scale * 100);
-    ofDrawTriangle(posX + scale * 125, posY - scale * 10, posX + scale * 160, posY + scale * 10, posX + scale * 150, posY + scale * 100);
-    ofDrawTriangle(posX, posY + scale * 170, posX + scale * 180, posY + scale * 230, posX + scale * 230, posY + scale * 200);
+    for (int i = 0; i <= 40; i++)
+    {
+        posY = scale * 355 * i;
+        for (int j = 0; j <= 50; j++)
+        {
+            posX = scale * 350 * j;
+            // 羽と尾の描画
+            ofSetColor(28, 28, 32);
+            ofDrawTriangle(posX - scale * 155, posY + scale * 10, posX - scale * 125, posY - scale * 10, posX - scale * 150, posY + scale * 100);
+            ofDrawTriangle(posX + scale * 125, posY - scale * 10, posX + scale * 160, posY + scale * 10, posX + scale * 150, posY + scale * 100);
+            ofDrawTriangle(posX, posY + scale * 170, posX + scale * 180, posY + scale * 230, posX + scale * 230, posY + scale * 200);
 
-    // 頭と体の描画
-    ofSetColor(255, 255, 255);
-    ofDrawEllipse(posX, posY, scale * 250, scale * 200);
-    ofDrawEllipse(posX, posY + scale * 80, scale * 300, scale * 310);
+            // 頭と体の描画
+            ofSetColor(255, 255, 255);
+            ofDrawEllipse(posX, posY, scale * 250, scale * 200);
+            ofDrawEllipse(posX, posY + scale * 80, scale * 300, scale * 310);
 
-    // 目と嘴の描画
-    ofSetColor(0, 0, 0);
-    ofDrawCircle(posX - scale * 50, posY - scale * 30, scale * 15);
-    ofDrawCircle(posX + scale * 50, posY - scale * 30, scale * 15);
-    ofDrawTriangle(posX - scale * 20, posY - scale * 15, posX, posY - scale * 30, posX + scale * 20, posY - scale * 15);
+            // 目と嘴の描画
+            ofSetColor(0, 0, 0);
+            ofDrawCircle(posX - scale * 50, posY - scale * 30, scale * 15);
+            ofDrawCircle(posX + scale * 50, posY - scale * 30, scale * 15);
+            ofDrawTriangle(posX - scale * 20, posY - scale * 15, posX, posY - scale * 30, posX + scale * 20, posY - scale * 15);
+        }
+    }
 }
 
 //--------------------------------------------------------------
@@ -84,10 +92,12 @@ void ofApp::keyPressed(int key)
         posX -= 10;
     if (key == 'd')
         posX += 10;
-    if (key == '+')
-        scale += 0.5;
-    if (key == '-')
-        scale -= 0.5;
+    if (key == 'p')
+    {
+        scale += 0.05;
+    }
+    if (key == 'm' && 0 < scale)
+        scale -= 0.05;
 }
 
 //--------------------------------------------------------------
