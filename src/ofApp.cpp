@@ -62,8 +62,25 @@ void ofApp::draw()
             ofDrawTriangle(posX + scale * 125, posY - scale * 10, posX + scale * 160, posY + scale * 10, posX + scale * 150, posY + scale * 100);
             ofDrawTriangle(posX, posY + scale * 170, posX + scale * 180, posY + scale * 230, posX + scale * 230, posY + scale * 200);
 
+            int random = ofRandom(0, 3);
+
             // 頭と体の描画
-            ofSetColor(255, 255, 255);
+            if (random == 0)
+            {
+                ofSetColor(150, 150, 150);
+            }
+            else if (random == 1)
+            {
+                ofSetColor(200, 200, 200);
+            }
+            else if (random == 2)
+            {
+                ofSetColor(230, 230, 230);
+            }
+            else
+            {
+                ofSetColor(255, 255, 255);
+            }
             ofDrawEllipse(posX, posY, scale * 250, scale * 200);
             ofDrawEllipse(posX, posY + scale * 80, scale * 300, scale * 310);
 
